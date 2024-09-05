@@ -1,4 +1,3 @@
-import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 
@@ -26,30 +25,24 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <html
-        lang="fr"
-        className="scroll-smooth antialiased"
-        suppressHydrationWarning
+    <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
+      <body
+        className={cn(
+          'flex min-h-screen flex-col font-sans antialiased',
+          fontSans.variable
+        )}
       >
-        <body
-          className={cn(
-            'flex min-h-screen flex-col bg-background font-sans',
-            fontSans.variable
-          )}
+        <ThemeProvider
+          enableSystem
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            enableSystem
-            attribute="class"
-            defaultTheme="system"
-            disableTransitionOnChange
-          >
-            <Header />
-            <main className="grow">{children}</main>
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          <Header />
+          <main className="grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

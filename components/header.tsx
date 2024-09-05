@@ -1,37 +1,31 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
-import React from 'react'
 
 import ThemeToggle from '@/components/theme-toggle'
 
-import { Button } from './ui/button'
-
 export default function Header() {
   return (
-    <header className="py-4">
-      <nav className="container flex items-center justify-between">
-        <ul className="flex items-center gap-10 text-sm font-medium">
-          <li className="text-lg font-semibold">
-            <Link href="/">Logo</Link>
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/75 py-6 backdrop-blur-sm">
+      <nav className="container flex max-w-3xl items-center justify-between">
+        <div>
+          <Link href="/" className="font-serif text-2xl font-bold">
+            DR
+          </Link>
+        </div>
+
+        <ul className="flex items-center gap-6 text-sm font-light text-muted-foreground sm:gap-10">
+          <li className="transition-colors hover:text-foreground">
+            <Link href="/posts">Posts</Link>
           </li>
-          <li>
-            <Link href="/dashboard">
-              <Button size="sm" variant="destructive">
-                Dashboard
-              </Button>
-            </Link>
+          <li className="transition-colors hover:text-foreground">
+            <Link href="/projects">Projets</Link>
+          </li>
+          <li className="transition-colors hover:text-foreground">
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
-        <div className="flex items-center justify-center gap-6">
+
+        <div>
           <ThemeToggle />
-          <SignedOut>
-            <SignInButton>
-              <Button size="sm">Sign In</Button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
         </div>
       </nav>
     </header>
